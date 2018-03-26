@@ -1,0 +1,7 @@
+.idea
+
+dataset
+.env
+
+staticfiles
+cloud_sql_proxy
