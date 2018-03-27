@@ -5,3 +5,5 @@ dataset
 
 staticfiles
 cloud_sql_proxy
+
+node_modules

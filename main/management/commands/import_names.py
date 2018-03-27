@@ -8,10 +8,6 @@ from main.models import Name, Gender, State, NameInState
 
 module_dir = os.path.dirname(__file__)  # get current directory
 
-
-states = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT']
-
-
 class Command(BaseCommand):
     """
     A custom command to import the names stored in the .txt
@@ -112,12 +108,14 @@ class Command(BaseCommand):
                 reader = csv.reader(data)
 
                 for row in reader:
-                    gender = self.get_gender(row=row)
-                    state = self.get_state(row=row)
-                    name = self.get_name(row=row, gender=gender, state=state)
-                    name_in_state = self.get_name_in_state(name=name, state=state, row=row)
-
-                    print('processed {}'.format(row[3]))
+                    if len(row) > 0:
+                        gender = self.get_gender(row=row)
+                        state = self.get_state(row=row)
+                        name = self.get_name(row=row, gender=gender, state=state)
+                        name_in_state = self.get_name_in_state(name=name, state=state, row=row)
+                        print('processed {}'.format(row[3]))
+                    else:
+                        print('empty row')
 
         print('Added {} new names'.format((Name.objects.all().count() - initial_names_count)))
         print('Bye Bye')
