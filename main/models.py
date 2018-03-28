@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 GENDER = (('F', 'F'), ('M', 'M'))
 
@@ -29,6 +29,12 @@ class Name(models.Model):
     """
     name = models.CharField(max_length=256)
     gender = models.ForeignKey(Gender, on_delete=models.SET_NULL, null=True)
+
+    def get_absolute_url(self):
+        return reverse('name-detail', kwargs={
+            'name': self.name,
+            'pk': self.pk
+        })
 
     def __str__(self):
         return u'{}'.format(self.name)

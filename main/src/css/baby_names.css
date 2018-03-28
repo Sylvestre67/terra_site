@@ -1,0 +1,24 @@
+@import '_colors.css';
+
+.baby-names .row{
+    margin:0;
+}
+
+.baby-names > div:first-child{
+
+}
+
+.baby-names > div:last-child{
+
+}
+
+.baby-names ul{
+    margin:0
+}
+
+.baby-names ul > li{
+    padding:.5em;
+    list-style: none;
+    background-color: color(var(--yellow) alpha(40%));
+    margin:.3em;
+}

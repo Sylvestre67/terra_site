@@ -3,16 +3,17 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const LiveReloadPlugin = require('webpack-livereload-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-// const extractCss = new MiniCssExtractPlugin({filename: "[name].css"});
+const isProd = process.env.NODE_ENV === 'production';
 
-module.exports = {
+const config = {
     entry: './src/index.js',
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'static'),
         filename: '[name].bundle.js',
-        publicPath: 'static'
+        publicPath: '/static/'
     },
     module: {
         rules: [
@@ -32,11 +33,6 @@ module.exports = {
                 use: ['style-loader','css-loader', 'postcss-loader']
             },
             {
-                test: /\.scss$/,
-                exclude: /node_modules/,
-                use: [ 'style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
-            },
-            {
                 test: /\.(png|jpg|gif|svg|eot|otf|ttf|woff|woff2)$/,
                 loader: 'url-loader',
                 options: {
@@ -54,3 +50,20 @@ module.exports = {
         })
     ]
 };
+
+
+if(isProd){
+    const extractCss = new MiniCssExtractPlugin({filename: "[name].[hash].css"});
+    const cleanFolder = new CleanWebpackPlugin(['static/*.*']);
+
+    config.output.filename = '[name].[hash].js';
+    config.output.publicPath = 'https://storage.googleapis.com/babynames-199117/static/';
+
+    config.mode = 'production';
+    config.module.rules[2].use = [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'];
+
+    config.plugins.push(extractCss);
+    config.plugins.push(cleanFolder);
+}
+
+module.exports = config;

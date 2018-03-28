@@ -8,12 +8,13 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "./node_modules/.bin/webpack",
+    "build": "export NODE_ENV=production && ./node_modules/.bin/webpack -p",
     "dev": "./node_modules/.bin/webpack -d --watch"
   },
   "devDependencies": {
     "babel-eslint": "8.2.2",
     "babel-loader": "7.1.4",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "eslint": "4.19.1",
     "eslint-config-prettier": "2.9.0",

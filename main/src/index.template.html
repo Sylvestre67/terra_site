@@ -12,10 +12,26 @@
 <div class="header">
     <span>BaBy NaMeS</span>
 </div>
-
 <div class="baby-names">
-    {% block main_content %}{% endblock %}
+    <div class="row ">
+        <div class="col-xs-12">
+            <p>Advertiser</p>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-xs-12
+                    col-sm-8
+                    col-md-8">
+        {% block main_content %}{% endblock %}
+        </div>
+        <div class="col-xs-12
+                    col-sm-4
+                    col-md-4">
+            <p>Advertiser</p>
+        </div>
+    </div>
 </div>
+
 
 <script src="http://localhost:35729/livereload.js"></script>
 

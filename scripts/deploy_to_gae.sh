@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
+cd ./main && yarn run build
+cd ..
+
 python manage.py collectstatic --no-input
 
-gsutil rsync -R staticfiles/ gs://$GCS_BUCKET_NAME
+gsutil rm gs://$GCS_BUCKET_NAME/static/*
+gsutil rsync -R staticfiles/ gs://$GCS_BUCKET_NAME/static/
 
 cp app.template.yaml  app.yaml
 

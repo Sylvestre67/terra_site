@@ -8,11 +8,14 @@ body, html{
     min-height: 100%;
     box-sizing: border-box;
 
-    background-color: color(var(--yellow) alpha(30%));
     color: var(--font);
 
     font-family: Muli, Helvetica, Arial, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+body > div{
+    background-color: color(var(--yellow) alpha(30%));
 }
