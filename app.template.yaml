@@ -12,3 +12,8 @@ env_variables:
   PYTHONUNBUFFERED: '1'
   SECRET_KEY: '<secret_key>'
   DJANGO_SETTINGS_MODULE: 'baby_names.settings'
+
+handlers:
+- url: /robots.txt
+  static_files: robots.txt
+  upload: robots.txt
